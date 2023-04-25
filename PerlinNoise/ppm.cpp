@@ -5,28 +5,20 @@
 
 #include "ppm.h"
 
-//init with default values
-
 void ppm::init() {
     width = 0;
     height = 0;
     max_col_val = 255;
 }
 
-//create a PPM object
-
 ppm::ppm() {
     init();
 }
-
-//create a PPM object and fill it with data stored in fname 
 
 ppm::ppm(const std::string &fname) {
     init();
     read(fname);
 }
-
-//create an "epmty" PPM image with a given width and height;the R,G,B arrays are filled with zeros
 
 ppm::ppm(const unsigned int _width, const unsigned int _height) {
     init();
@@ -36,13 +28,10 @@ ppm::ppm(const unsigned int _width, const unsigned int _height) {
     nr_columns = width;
     size = width*height;
 
-    // fill r, g and b with 0
     r.resize(size);
     g.resize(size);
     b.resize(size);
 }
-
-//read the PPM image from fname
 
 void ppm::read(const std::string &fname) {
     std::ifstream inp(fname.c_str(), std::ios::in | std::ios::binary);
@@ -99,9 +88,7 @@ void ppm::read(const std::string &fname) {
     inp.close();
 }
 
-//write the PPM image in fname
-
-void ppm::write(const std::string &fname) {
+void ppm::write(const std::string &fname) const {
     std::ofstream inp(fname.c_str(), std::ios::out | std::ios::binary);
     if (inp.is_open()) {
 
